@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Denis & Viktoriia</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+    :root {
+      --bg-main: #EBEBEB;
+      --bg-blue: #92A4BD;
+      --text-dark: #111111;
+      --line: rgba(17, 17, 17, 0.22);
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      font-family: "Times New Roman", Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .site {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 1s ease, transform 1s ease;
+      pointer-events: none;
+    }
+
+    .site.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ===== INTRO ===== */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(255,255,255,0.38), transparent 24%),
+        radial-gradient(circle at 50% 75%, rgba(255,255,255,0.16), transparent 28%),
+        var(--bg-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 1s ease, visibility 1s ease, filter 1s ease;
+    }
+
+    .intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      filter: blur(10px);
+    }
+
+    .intro-inner {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      max-width: 900px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .intro-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      font-weight: 500;
+      color: #111;
+      opacity: 0;
+      transform: translateY(22px);
+      animation: titleRise 1.5s ease forwards 0.55s;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.14);
+    }
+
+    .intro-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      animation: introBreath 7s ease-in-out infinite alternate;
+    }
+
+    /* SVG flowers */
+    .calla-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .stem,
+    .flower-head,
+    .flower-head-2,
+    .spadix {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .stem {
+      opacity: 0;
+      animation: stemGrow 1.5s ease forwards;
+    }
+
+    .flower-head,
+    .flower-head-2 {
+      opacity: 0;
+      animation: bloomOpen 1.6s ease forwards;
+    }
+
+    .spadix {
+      opacity: 0;
+      animation: spadixShow 1s ease forwards;
+    }
+
+    .float-slow {
+      animation-name: bloomOpen, flowerFloat;
+      animation-duration: 1.6s, 6s;
+      animation-delay: 0.35s, 2.2s;
+      animation-fill-mode: forwards, both;
+      animation-iteration-count: 1, infinite;
+      animation-timing-function: ease, ease-in-out;
+    }
+
+    .float-mid {
+      animation-name: bloomOpen, flowerFloat2;
+      animation-duration: 1.6s, 5.6s;
+      animation-delay: 0.65s, 2.4s;
+      animation-fill-mode: forwards, both;
+      animation-iteration-count: 1, infinite;
+      animation-timing-function: ease, ease-in-out;
+    }
+
+    .float-fast {
+      animation-name: bloomOpen, flowerFloat3;
+      animation-duration: 1.6s, 5s;
+      animation-delay: 0.95s, 2.6s;
+      animation-fill-mode: forwards, both;
+      animation-iteration-count: 1, infinite;
+      animation-timing-function: ease, ease-in-out;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.5s; }
+    .delay-3 { animation-delay: 0.8s; }
+    .delay-4 { animation-delay: 1.05s; }
+
+    @keyframes titleRise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes introBreath {
+      0% { transform: scale(1); opacity: 0.78; }
+      100% { transform: scale(1.03); opacity: 1; }
+    }
+
+    @keyframes stemGrow {
+      0% {
+        opacity: 0;
+        transform: scaleY(0.15) translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: scaleY(1) translateY(0);
+      }
+    }
+
+    @keyframes bloomOpen {
+      0% {
+        opacity: 0;
+        transform: scale(0.82) rotate(-6deg) translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg) translateY(0);
+      }
+    }
+
+    @keyframes spadixShow {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scaleY(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+    }
+
+    @keyframes flowerFloat {
+      0%,100% { transform: translateY(0px) rotate(0.2deg); }
+      50% { transform: translateY(-5px) rotate(-0.8deg); }
+    }
+
+    @keyframes flowerFloat2 {
+      0%,100% { transform: translateY(0px) rotate(-0.3deg); }
+      50% { transform: translateY(-7px) rotate(0.8deg); }
+    }
+
+    @keyframes flowerFloat3 {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(1deg); }
+    }
+
+    /* ===== CONTENT ===== */
+    .section-image {
+      width: 100%;
+      background: var(--bg-main);
+    }
+
+    .section-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== TIMING ===== */
+    .timing-wrap {
+      background: var(--bg-main);
+      padding: 18px 12px 8px;
+    }
+
+    .timing-card {
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #d7d7d7;
+    }
+
+    .timing-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 260px;
+      max-height: 420px;
+      background:
+        linear-gradient(rgba(235,235,235,0.05), rgba(235,235,235,0.12)),
+        url("Taiming.jpg") center 42% / cover no-repeat;
+    }
+
+    .timing-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(235,235,235,0.10) 0%,
+        rgba(235,235,235,0.02) 36%,
+        rgba(235,235,235,0.08) 100%
+      );
+      pointer-events: none;
+    }
+
+    .timing-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 22px 18px 16px;
+    }
+
+    .timing-title {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(28px, 4.6vw, 50px);
+      line-height: 1.04;
+      font-weight: 400;
+      color: #111;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: softText 0.9s ease forwards 0.4s;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .countdown {
+      width: 100%;
+      max-width: 780px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      margin-top: 26px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: softText 0.9s ease forwards 0.75s;
+    }
+
+    .count-item {
+      position: relative;
+      padding: 4px 8px;
+    }
+
+    .count-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1.5px;
+      background: rgba(17,17,17,0.24);
+    }
+
+    .count-num {
+      font-size: clamp(38px, 6.7vw, 76px);
+      line-height: 1;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #060606;
+    }
+
+    .count-label {
+      font-size: clamp(15px, 2.2vw, 23px);
+      letter-spacing: 0.01em;
+      color: #151515;
+    }
+
+    @keyframes softText {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== BLUE SECTION ===== */
+    .blue-wrap {
+      background: var(--bg-blue);
+      padding: 42px 18px 56px;
+    }
+
+    .form-section {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .form-title,
+    .group-title {
+      margin: 0 0 26px;
+      font-size: clamp(34px, 8vw, 62px);
+      font-weight: 400;
+      color: #111;
+    }
+
+    .form-card {
+      background: rgba(255,255,255,0.34);
+      border-radius: 34px;
+      padding: 26px 18px 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(2px);
+    }
+
+    .field {
+      width: 100%;
+      height: 68px;
+      border-radius: 24px;
+      border: 1.6px solid rgba(17,17,17,0.22);
+      background: rgba(255,255,255,0.20);
+      padding: 0 22px;
+      font-size: 22px;
+      color: #111;
+      outline: none;
+      margin-bottom: 22px;
+    }
+
+    .field::placeholder {
+      color: rgba(17,17,17,0.42);
+    }
+
+    .radio-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 34px;
+      margin: 8px 0 22px;
+      flex-wrap: wrap;
+    }
+
+    .radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      color: #111;
+    }
+
+    .radio-label input[type="radio"] {
+      width: 28px;
+      height: 28px;
+      accent-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      margin-top: 6px;
+      min-width: 220px;
+      height: 68px;
+      padding: 0 32px;
+      border: none;
+      border-radius: 999px;
+      background: #496e9f;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    }
+
+    .group-section {
+      max-width: 860px;
+      margin: 48px auto 0;
+      text-align: center;
+    }
+
+    .group-link {
+      display: inline-block;
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      font-size: clamp(24px, 5vw, 40px);
+      line-height: 1.3;
+      opacity: 0.96;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .music-note {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 50;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      color: #111;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .music-note.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 740px) {
+      .intro-title {
+        font-size: clamp(46px, 9vw, 76px);
+        line-height: 0.98;
+        padding: 0 14px;
+      }
+
+      .timing-wrap {
+        padding: 14px 10px 8px;
+      }
+
+      .timing-card {
+        border-radius: 24px;
+      }
+
+      .timing-image {
+        aspect-ratio: 1.55 / 1;
+        min-height: 220px;
+        max-height: none;
+        background-position: center 42%;
+      }
+
+      .timing-overlay {
+        padding: 18px 10px 12px;
+      }
+
+      .timing-title {
+        max-width: 96%;
+        font-size: clamp(21px, 5.6vw, 31px);
+      }
+
+      .countdown {
+        margin-top: 18px;
+      }
+
+      .count-item {
+        padding: 4px 3px;
+      }
+
+      .count-num {
+        font-size: clamp(28px, 7.6vw, 46px);
+      }
+
+      .count-label {
+        font-size: 13px;
+      }
+
+      .form-card {
+        padding: 22px 14px 28px;
+      }
+
+      .field {
+        height: 64px;
+        font-size: 20px;
+      }
+
+      .submit-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="Music%20.m4a" type="audio/mp4" />
+  </audio>
+
+  <section class="intro" id="intro">
+    <div class="intro-glow"></div>
+
+    <svg class="calla-svg" viewBox="0 0 1000 1600" preserveAspectRatio="none" aria-hidden="true">
+      <!-- top right large calla -->
+      <g>
+        <path class="stem delay-1" d="M825 0 C 855 120, 885 230, 940 380" fill="none" stroke="#91A072" stroke-width="10" stroke-linecap="round"/>
+        <path class="flower-head float-slow" d="M740 20 C 815 -10, 900 10, 945 70 C 980 118, 980 186, 938 240 C 893 297, 797 310, 726 266 C 656 223, 648 126, 698 66 C 710 51, 724 33, 740 20 Z" fill="#FAFAF6"/>
+        <path class="flower-head-2 float-slow" d="M760 45 C 825 40, 890 80, 917 138 C 889 115, 840 109, 800 116 C 764 124, 732 138, 702 168 C 706 114, 720 77, 760 45 Z" fill="#EEF1E6"/>
+        <path class="spadix" d="M818 106 C 826 124, 829 144, 828 162" fill="none" stroke="#DCCB62" stroke-width="8" stroke-linecap="round"/>
+      </g>
+
+      <!-- bottom left large calla -->
+      <g>
+        <path class="stem delay-2" d="M105 1600 C 124 1450, 152 1320, 220 1170" fill="none" stroke="#91A072" stroke-width="10" stroke-linecap="round"/>
+        <path class="flower-head float-mid" d="M72 1128 C 152 1092, 251 1101, 309 1160 C 356 1207, 367 1284, 327 1343 C 283 1408, 180 1438, 101 1397 C 23 1355, -10 1264, 24 1194 C 34 1172, 49 1148, 72 1128 Z" fill="#FAFAF6"/>
+        <path class="flower-head-2 float-mid" d="M109 1157 C 178 1146, 238 1176, 272 1235 C 232 1214, 182 1210, 141 1217 C 100 1225, 66 1248, 36 1276 C 44 1222, 62 1186, 109 1157 Z" fill="#EEF1E6"/>
+        <path class="spadix" d="M158 1222 C 167 1241, 170 1260, 169 1278" fill="none" stroke="#DCCB62" stroke-width="8" stroke-linecap="round"/>
+      </g>
+
+      <!-- top left small calla -->
+      <g>
+        <path class="stem delay-3" d="M20 0 C 8 118, 8 220, 14 360" fill="none" stroke="#91A072" stroke-width="8" stroke-linecap="round"/>
+        <path class="flower-head float-fast" d="M45 22 C 98 8, 151 25, 180 64 C 204 97, 205 143, 178 180 C 149 218, 88 230, 40 205 C -7 180, -17 124, 9 80 C 18 64, 29 39, 45 22 Z" fill="#FAFAF6"/>
+        <path class="flower-head-2 float-fast" d="M57 44 C 101 42, 145 66, 161 107 C 137 91, 102 88, 73 93 C 48 98, 28 110, 5 130 C 8 92, 22 60, 57 44 Z" fill="#EEF1E6"/>
+        <path class="spadix" d="M101 81 C 106 94, 108 107, 108 119" fill="none" stroke="#DCCB62" stroke-width="6" stroke-linecap="round"/>
+      </g>
+
+      <!-- bottom right small calla -->
+      <g>
+        <path class="stem delay-4" d="M1000 1600 C 960 1490, 930 1410, 874 1320" fill="none" stroke="#91A072" stroke-width="8" stroke-linecap="round"/>
+        <path class="flower-head float-mid" d="M820 1240 C 868 1218, 923 1224, 960 1261 C 991 1293, 998 1342, 973 1382 C 946 1425, 887 1446, 839 1425 C 788 1404, 769 1347, 790 1297 C 797 1277, 806 1256, 820 1240 Z" fill="#FAFAF6"/>
+        <path class="flower-head-2 float-mid" d="M842 1264 C 883 1257, 923 1273, 949 1307 C 924 1298, 892 1297, 864 1302 C 839 1307, 818 1320, 797 1338 C 804 1304, 815 1282, 842 1264 Z" fill="#EEF1E6"/>
+        <path class="spadix" d="M886 1300 C 891 1312, 894 1324, 893 1336" fill="none" stroke="#DCCB62" stroke-width="6" stroke-linecap="round"/>
+      </g>
+    </svg>
+
+    <div class="intro-inner">
+      <h1 class="intro-title">Любовь никогда<br>не перестаёт</h1>
+    </div>
+  </section>
+
+  <div class="music-note" id="musicNote">Музыка включена</div>
+
+  <main class="site" id="site">
+    <section class="section-image reveal">
+      <img src="Foto1.PNG" alt="Первый экран" />
+    </section>
+
+    <section class="section-image reveal">
+      <img src="Foto2.PNG" alt="Второй экран" />
+    </section>
+
+    <section class="section-image reveal">
+      <img src="Foto3.PNG" alt="Третий экран" />
+    </section>
+
+    <section class="timing-wrap reveal">
+      <div class="timing-card">
+        <div class="timing-image">
+          <div class="timing-overlay">
+            <h2 class="timing-title">До того, как мы станем семьёй, осталось...</h2>
+
+            <div class="countdown" aria-label="Таймер до свадьбы">
+              <div class="count-item">
+                <div class="count-num" id="days">00</div>
+                <div class="count-label">дней</div>
+              </div>
+              <div class="count-item">
+                <div class="count-num" id="hours">00</div>
+                <div class="count-label">часов</div>
+              </div>
+              <div class="count-item">
+                <div class="count-num" id="minutes">00</div>
+                <div class="count-label">минут</div>
+              </div>
+              <div class="count-item">
+                <div class="count-num" id="seconds">00</div>
+                <div class="count-label">секунд</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-image reveal">
+      <img src="Foto4.jpg" alt="Четвёртый экран" />
+    </section>
+
+    <section class="blue-wrap reveal">
+      <div class="form-section">
+        <h2 class="form-title">Анкета Гостя !</h2>
+
+        <div class="form-card">
+          <form onsubmit="return false;">
+            <input class="field" type="text" placeholder="Имя" />
+
+            <div class="radio-row">
+              <label class="radio-label">
+                <input type="radio" name="attendance" />
+                <span>Да</span>
+              </label>
+
+              <label class="radio-label">
+                <input type="radio" name="attendance" />
+                <span>Нет</span>
+              </label>
+            </div>
+
+            <input class="field" type="number" min="1" placeholder="Количество" />
+
+            <button class="submit-btn" type="button">Отправить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="group-section">
+        <h2 class="group-title">Общая группа</h2>
+        <a class="group-link" href="javascript:void(0)">Перейти в Telegram</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const intro = document.getElementById("intro");
+    const site = document.getElementById("site");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicNote = document.getElementById("musicNote");
+
+    let opened = false;
+
+    function openSite() {
+      if (opened) return;
+      opened = true;
+
+      intro.classList.add("hide");
+      site.classList.add("show");
+
+      bgMusic.play()
+        .then(() => {
+          musicNote.classList.add("show");
+          setTimeout(() => musicNote.classList.remove("show"), 2200);
+        })
+        .catch(() => {
+          console.log("Запуск музыки ограничен браузером.");
+        });
+    }
+
+    intro.addEventListener("click", openSite);
+    intro.addEventListener("touchstart", openSite, { passive: true });
+
+    const weddingDate = new Date("2026-05-02T10:00:00");
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function pad(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+      daysEl.textContent = pad(days);
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
