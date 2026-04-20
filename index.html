@@ -16,7 +16,6 @@
       --shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
       --radius-xl: 34px;
       --radius-lg: 28px;
-      --radius-md: 22px;
     }
 
     * {
@@ -151,34 +150,40 @@
     .reveal-up,
     .reveal-left,
     .reveal-right,
-    .reveal-fade,
-    .stagger {
+    .reveal-fade {
       opacity: 0;
-      transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+      transition: opacity 0.95s ease, transform 0.95s ease;
       will-change: transform, opacity;
     }
 
-    .reveal-up { transform: translateY(34px); }
-    .reveal-left { transform: translateX(-46px); }
-    .reveal-right { transform: translateX(46px); }
-    .reveal-fade { transform: translateY(14px); }
-    .stagger { transform: translateY(20px); }
+    .reveal-up { transform: translateY(38px); }
+    .reveal-left { transform: translateX(-54px); }
+    .reveal-right { transform: translateX(54px); }
+    .reveal-fade { transform: translateY(16px); }
 
     .reveal-up.visible,
     .reveal-left.visible,
     .reveal-right.visible,
-    .reveal-fade.visible,
-    .stagger.visible {
+    .reveal-fade.visible {
       opacity: 1;
       transform: translate(0, 0);
     }
 
-    .delay-1 { transition-delay: 0.12s; }
-    .delay-2 { transition-delay: 0.24s; }
-    .delay-3 { transition-delay: 0.36s; }
-    .delay-4 { transition-delay: 0.48s; }
+    .delay-1 { transition-delay: 0.14s; }
+    .delay-2 { transition-delay: 0.28s; }
+    .delay-3 { transition-delay: 0.42s; }
+    .delay-4 { transition-delay: 0.56s; }
+
+    /* ===== ПРОСТРАНСТВО ===== */
+    .block-space-xl {
+      height: 54px;
+      background: var(--bg-main);
+    }
+
+    .block-space-lg {
+      height: 38px;
+      background: var(--bg-main);
+    }
 
     /* ===== ОБЩИЕ БЛОКИ ===== */
     .section-image {
@@ -192,49 +197,56 @@
       object-fit: cover;
     }
 
-    .spacer-xl { height: 42px; }
-    .spacer-lg { height: 28px; }
-
-    /* ===== ИМЯ И ДАТА ===== */
-    .names-block {
-      background: #EBEBEB;
-      text-align: center;
-      padding: 10px 20px 78px;
+    /* ===== ПЕРВОЕ ФОТО С ИМЕНАМИ ===== */
+    .hero-photo-wrap {
+      background: var(--bg-main);
+      position: relative;
     }
 
-    .names-text {
+    .hero-photo-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .hero-names {
+      position: absolute;
+      left: 50%;
+      bottom: 7%;
+      transform: translateX(-50%) translateY(28px);
+      width: calc(100% - 60px);
+      text-align: center;
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(42px, 8vw, 92px);
+      font-size: clamp(38px, 7.5vw, 92px);
       line-height: 0.95;
       font-weight: 500;
       color: #111111;
       letter-spacing: 0.01em;
+      opacity: 0;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+      transition: opacity 0.95s ease, transform 0.95s ease;
+      z-index: 3;
+      pointer-events: none;
     }
 
-    .names-date {
-      margin-top: 24px;
+    .hero-photo-wrap.visible .hero-names {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .hero-date {
+      background: var(--bg-main);
+      text-align: center;
+      padding: 28px 20px 84px;
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(16px, 2.4vw, 28px);
       letter-spacing: 0.14em;
       color: #111111;
     }
 
-    /* ===== МЫ ЖЕНИМСЯ / МЕСТО ПРОВЕДЕНИЯ ===== */
-    .blue-image-block {
-      width: 100%;
-      background: var(--bg-main);
-      padding: 24px 0 34px;
-    }
-
-    .blue-image-block img {
-      width: 100%;
-      height: auto;
-    }
-
     /* ===== ГАЛЕРЕЯ ===== */
     .gallery-section {
       background: var(--bg-main);
-      padding: 40px 0 40px;
+      padding: 46px 0 48px;
     }
 
     .gallery-bg {
@@ -243,7 +255,7 @@
       margin: 0 auto;
       background: var(--bg-blue);
       border-radius: var(--radius-xl);
-      padding: 30px 26px 26px;
+      padding: 30px 26px 28px;
       box-shadow: var(--shadow);
     }
 
@@ -268,7 +280,7 @@
     }
 
     .gallery-quote {
-      margin-top: 28px;
+      margin-top: 30px;
       text-align: center;
       font-size: clamp(18px, 2.2vw, 34px);
       line-height: 1.42;
@@ -281,7 +293,7 @@
     /* ===== ТАЙМЕР ===== */
     .timing-wrap {
       background: var(--bg-main);
-      padding: 40px 12px 44px;
+      padding: 46px 12px 50px;
     }
 
     .timing-card {
@@ -302,7 +314,7 @@
       min-height: 280px;
       max-height: 460px;
       background:
-        linear-gradient(rgba(0,0,0,0.14), rgba(0,0,0,0.14)),
+        linear-gradient(rgba(0,0,0,0.16), rgba(0,0,0,0.16)),
         url("Taiming.jpg") center 42% / cover no-repeat;
     }
 
@@ -366,7 +378,7 @@
     }
 
     .count-num {
-      font-size: clamp(52px, 8.4vw, 102px);
+      font-size: clamp(52px, 8.6vw, 104px);
       line-height: 1;
       font-weight: 600;
       margin-bottom: 10px;
@@ -386,7 +398,7 @@
     /* ===== АНКЕТА ===== */
     .form-wrap {
       background: var(--bg-blue);
-      padding: 60px 18px 64px;
+      padding: 64px 18px 68px;
     }
 
     .form-section {
@@ -478,7 +490,7 @@
 
     .group-section {
       max-width: 860px;
-      margin: 52px auto 0;
+      margin: 56px auto 0;
       text-align: center;
     }
 
@@ -552,30 +564,32 @@
         font-size: clamp(32px, 7.8vw, 54px);
       }
 
-      .names-block {
-        padding: 6px 16px 60px;
+      .block-space-xl {
+        height: 42px;
       }
 
-      .names-text {
+      .block-space-lg {
+        height: 28px;
+      }
+
+      .hero-names {
+        width: calc(100% - 40px);
         font-size: clamp(34px, 8.8vw, 64px);
+        bottom: 8%;
       }
 
-      .names-date {
-        margin-top: 18px;
+      .hero-date {
+        padding: 22px 16px 70px;
         font-size: 14px;
         letter-spacing: 0.12em;
       }
 
-      .blue-image-block {
-        padding: 20px 0 28px;
-      }
-
       .gallery-section {
-        padding: 34px 0 34px;
+        padding: 38px 0 40px;
       }
 
       .gallery-bg {
-        padding: 18px 14px 20px;
+        padding: 18px 14px 22px;
         border-radius: 26px;
       }
 
@@ -588,13 +602,13 @@
       }
 
       .gallery-quote {
-        margin-top: 18px;
+        margin-top: 20px;
         font-size: 15px;
         letter-spacing: 0.03em;
       }
 
       .timing-wrap {
-        padding: 34px 10px 38px;
+        padding: 40px 10px 42px;
       }
 
       .timing-card {
@@ -635,7 +649,7 @@
       }
 
       .form-wrap {
-        padding: 46px 16px 58px;
+        padding: 50px 16px 60px;
       }
 
       .form-title,
@@ -679,41 +693,38 @@
   <div class="thanks-popup" id="thanksPopup">Спасибо большое!<br>Ваша регистрация отправлена.</div>
 
   <main class="site" id="site">
-    <!-- 1 -->
-    <section class="section-image reveal-fade">
-      <img src="Foto1.PNG" alt="Главный экран" />
+    <!-- Foto1 -->
+    <section class="hero-photo-wrap reveal-fade" id="heroPhotoWrap">
+      <div class="hero-photo-box">
+        <img src="Foto1.PNG" alt="Главный экран" />
+        <div class="hero-names">Denis&amp;Viktoriia</div>
+      </div>
     </section>
 
-    <!-- Denis & Viktoriia между фото и датой -->
-    <section class="names-block">
-      <div class="names-text reveal-left">Denis&amp;Viktoriia</div>
-      <div class="names-date reveal-up delay-1">mai 16.05, 2026</div>
-    </section>
+    <div class="hero-date reveal-up delay-1">mai 16.05, 2026</div>
 
-    <!-- 2 -->
+    <div class="block-space-xl"></div>
+
+    <!-- Foto2 -->
     <section class="section-image reveal-up">
       <img src="Foto2.PNG" alt="Второй блок" />
     </section>
 
-    <!-- 3 -->
+    <div class="block-space-lg"></div>
+
+    <!-- Foto3 -->
     <section class="section-image reveal-up">
       <img src="Foto3.jpg" alt="Третий блок" />
     </section>
 
-    <!-- 4 -->
+    <div class="block-space-xl"></div>
+
+    <!-- Foto4 справа -->
     <section class="section-image reveal-right">
       <img src="Foto4.jpg" alt="Четвёртый блок" />
     </section>
 
-    <!-- Мы женимся -->
-    <section class="blue-image-block reveal-up">
-      <img src="Foto5.PNG" alt="Мы женимся" />
-    </section>
-
-    <!-- Место проведения -->
-    <section class="blue-image-block reveal-up">
-      <img src="Foto2.PNG" alt="Место проведения" />
-    </section>
+    <div class="block-space-xl"></div>
 
     <!-- Галерея -->
     <section class="gallery-section">
@@ -736,10 +747,14 @@
       </div>
     </section>
 
-    <!-- Foto6 -->
+    <div class="block-space-xl"></div>
+
+    <!-- Foto6 слева -->
     <section class="section-image reveal-left">
       <img src="Foto6.jpg" alt="Фото номер шесть" />
     </section>
+
+    <div class="block-space-xl"></div>
 
     <!-- Таймер -->
     <section class="timing-wrap reveal-up">
@@ -771,6 +786,8 @@
       </div>
     </section>
 
+    <div class="block-space-xl"></div>
+
     <!-- Анкета -->
     <section class="form-wrap reveal-up">
       <div class="form-section">
@@ -778,9 +795,9 @@
 
         <div class="form-card reveal-up delay-2">
           <form id="weddingForm" onsubmit="return false;">
-            <input class="field stagger delay-1" type="text" name="name" placeholder="Имя" required />
+            <input class="field reveal-up delay-1" type="text" name="name" placeholder="Имя" required />
 
-            <div class="radio-row stagger delay-2">
+            <div class="radio-row reveal-up delay-2">
               <label class="radio-label">
                 <input type="radio" name="attend" value="Да" required />
                 <span>Да</span>
@@ -792,9 +809,9 @@
               </label>
             </div>
 
-            <input class="field stagger delay-3" type="number" min="1" name="count" placeholder="Количество" />
+            <input class="field reveal-up delay-3" type="number" min="1" name="count" placeholder="Количество" />
 
-            <button class="submit-btn stagger delay-4" type="submit">Отправить</button>
+            <button class="submit-btn reveal-up delay-4" type="submit">Отправить</button>
           </form>
         </div>
       </div>
@@ -815,6 +832,7 @@
     const musicNote = document.getElementById("musicNote");
     const thanksPopup = document.getElementById("thanksPopup");
     const form = document.getElementById("weddingForm");
+    const heroPhotoWrap = document.getElementById("heroPhotoWrap");
 
     let opened = false;
 
@@ -838,7 +856,6 @@
     intro.addEventListener("click", openSite);
     intro.addEventListener("touchstart", openSite, { passive: true });
 
-    // Таймер до 16 мая 2026, 10:00
     const weddingDate = new Date("2026-05-16T10:00:00");
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
@@ -884,8 +901,10 @@
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right, .reveal-fade, .stagger")
+    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right, .reveal-fade")
       .forEach((el) => observer.observe(el));
+
+    observer.observe(heroPhotoWrap);
 
     form.addEventListener("submit", function () {
       const name = form.elements["name"].value;
