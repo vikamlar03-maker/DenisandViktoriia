@@ -209,10 +209,15 @@
     }
 
     .hero-names {
-      position: absolute;
-      left: 50%;
-      bottom: 7%;
-      transform: translateX(-50%) translateY(28px);
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+
+    transform: translate(80px, 0); /* старт справа */
+    opacity: 0;
+
+    transition: all 1.2s ease;
+}
       width: calc(100% - 60px);
       text-align: center;
       font-family: "Cormorant Garamond", serif;
@@ -228,11 +233,10 @@
       pointer-events: none;
     }
 
-    .hero-photo-wrap.visible .hero-names {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
+   .hero-photo-wrap.visible .hero-names {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
     .hero-date {
       background: var(--bg-main);
       text-align: center;
