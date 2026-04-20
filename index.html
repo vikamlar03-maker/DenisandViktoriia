@@ -198,54 +198,53 @@
     }
 
     /* ===== ПЕРВОЕ ФОТО С ИМЕНАМИ ===== */
-    .hero-photo-wrap {
-      background: var(--bg-main);
-      position: relative;
-    }
-
-    .hero-photo-box {
-      position: relative;
-      width: 100%;
-    }
-
-    .hero-names {
-    position: absolute;
-    left: 50%;
-    bottom: 12%;
-
-    transform: translate(80px, 0); /* старт справа */
-    opacity: 0;
-
-    transition: all 1.2s ease;
+.hero-photo-wrap {
+  background: var(--bg-main);
+  position: relative;
 }
-      width: calc(100% - 60px);
-      text-align: center;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(38px, 7.5vw, 92px);
-      line-height: 0.95;
-      font-weight: 500;
-      color: #111111;
-      letter-spacing: 0.01em;
-      opacity: 0;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.18);
-      transition: opacity 0.95s ease, transform 0.95s ease;
-      z-index: 3;
-      pointer-events: none;
-    }
 
-   .hero-photo-wrap.visible .hero-names {
-    opacity: 1;
-    transform: translate(-50%, 0);
+.hero-photo-box {
+  position: relative;
+  width: 100%;
 }
-    .hero-date {
-      background: var(--bg-main);
-      text-align: center;
-      padding: 28px 20px 84px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(16px, 2.4vw, 28px);
-      letter-spacing: 0.14em;
-      color: #111111;
-    }
+
+.hero-names {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: calc(100% - 60px);
+  text-align: center;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(38px, 7.5vw, 92px);
+  line-height: 0.95;
+  font-weight: 500;
+  color: #111111;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+
+  opacity: 0;
+  transform: translate(80px, 0);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-photo-wrap.visible .hero-names {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.hero-date {
+  background: var(--bg-main);
+  text-align: center;
+  padding: 28px 20px 84px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(16px, 2.4vw, 28px);
+  letter-spacing: 0.14em;
+  color: #111111;
+}
 
     /* ===== ГАЛЕРЕЯ ===== */
     .gallery-section {
