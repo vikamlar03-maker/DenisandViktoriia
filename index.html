@@ -60,7 +60,7 @@
       pointer-events: auto;
     }
 
-    /* ===== ЗАСТАВКА — НЕ МЕНЯЕМ ===== */
+    /* ===== ЗАСТАВКА ===== */
     .intro {
       position: fixed;
       inset: 0;
@@ -153,9 +153,7 @@
     .reveal-right,
     .reveal-fade {
       opacity: 0;
-      transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+      transition: opacity 0.9s ease, transform 0.9s ease;
       will-change: transform, opacity;
     }
 
@@ -175,7 +173,6 @@
     .delay-1 { transition-delay: 0.12s; }
     .delay-2 { transition-delay: 0.24s; }
     .delay-3 { transition-delay: 0.36s; }
-    .delay-4 { transition-delay: 0.48s; }
 
     /* ===== БАЗОВЫЕ СЕКЦИИ ===== */
     .section-image {
@@ -189,10 +186,82 @@
       object-fit: cover;
     }
 
+    /* ===== ИМЕНА ПОД ПЕРВЫМ ФОТО ===== */
+    .names-block {
+      background: #EBEBEB;
+      text-align: center;
+      padding: 10px 20px 72px;
+    }
+
+    .names-text {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 8vw, 92px);
+      line-height: 0.95;
+      font-weight: 500;
+      color: #111111;
+      letter-spacing: 0.01em;
+    }
+
+    .names-date {
+      margin-top: 24px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(16px, 2.4vw, 28px);
+      letter-spacing: 0.14em;
+      color: #111111;
+    }
+
+    /* ===== БЛОК С 2 ФОТО ===== */
+    .gallery-section {
+      background: var(--bg-main);
+      padding: 34px 0 28px;
+    }
+
+    .gallery-bg {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--bg-blue);
+      border-radius: var(--radius-xl);
+      padding: 28px 26px 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .gallery-photo {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+      background: #d8d8d8;
+    }
+
+    .gallery-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gallery-quote {
+      margin-top: 24px;
+      text-align: center;
+      font-size: clamp(18px, 2.2vw, 34px);
+      line-height: 1.42;
+      color: #111;
+      letter-spacing: 0.03em;
+      padding: 0 8px;
+    }
+
     /* ===== ТАЙМЕР ===== */
     .timing-wrap {
       background: var(--bg-main);
-      padding: 18px 12px 14px;
+      padding: 34px 12px 34px;
     }
 
     .timing-card {
@@ -213,7 +282,7 @@
       min-height: 280px;
       max-height: 460px;
       background:
-        linear-gradient(rgba(235,235,235,0.05), rgba(235,235,235,0.10)),
+        linear-gradient(rgba(0,0,0,0.14), rgba(0,0,0,0.14)),
         url("Taiming.jpg") center 42% / cover no-repeat;
     }
 
@@ -223,9 +292,9 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(235,235,235,0.10) 0%,
-        rgba(235,235,235,0.03) 36%,
-        rgba(235,235,235,0.08) 100%
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.02) 45%,
+        rgba(0,0,0,0.08) 100%
       );
       pointer-events: none;
     }
@@ -244,17 +313,17 @@
 
     .timing-title {
       margin: 0;
-      max-width: 840px;
-      font-size: clamp(30px, 5.2vw, 58px);
+      max-width: 860px;
+      font-size: clamp(30px, 5.2vw, 60px);
       line-height: 1.08;
       font-weight: 500;
-      color: rgba(0, 0, 0, 0.88);
-      text-shadow: 0 1px 2px rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.96);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.22);
     }
 
     .countdown {
       width: 100%;
-      max-width: 840px;
+      max-width: 860px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       align-items: center;
@@ -273,199 +342,34 @@
       top: 18%;
       height: 64%;
       width: 1.5px;
-      background: rgba(0,0,0,0.34);
+      background: rgba(255,255,255,0.55);
     }
 
     .count-num {
-      font-size: clamp(48px, 8vw, 96px);
+      font-size: clamp(52px, 8.4vw, 102px);
       line-height: 1;
       font-weight: 600;
       margin-bottom: 10px;
-      color: #000000;
+      color: #ffffff;
       text-align: center;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.18);
     }
 
     .count-label {
       font-size: clamp(18px, 2.6vw, 28px);
       letter-spacing: 0.01em;
-      color: rgba(0,0,0,0.88);
+      color: rgba(255,255,255,0.96);
       text-align: center;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.18);
     }
-
-    /* ===== ПОСЛЕДНИЙ ФОТОБЛОК ПОСЛЕ ТАЙМЕРА ===== */
-    .last-photo-wrap {
-      background: var(--bg-main);
-      padding: 0;
-    }
-
-    /* ===== ГАЛЕРЕЯ С ДВУМЯ ФОТО ===== */
-    .gallery-section {
-      position: relative;
-      background: var(--bg-main);
-      padding: 26px 0 12px;
-      overflow: hidden;
-    }
-
-    .gallery-bg {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      background: var(--bg-blue);
-      border-radius: var(--radius-xl);
-      padding: 52px 26px 20px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .gallery-flower-top {
-      position: absolute;
-      left: -34px;
-      top: -78px;
-      width: min(260px, 32vw);
-      z-index: 3;
-      opacity: 0;
-      transform: translateY(22px) scale(0.96);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .gallery-flower-bottom {
-      position: absolute;
-      right: -18px;
-      bottom: 22px;
-      width: min(260px, 32vw);
-      z-index: 3;
-      opacity: 0;
-      transform: translateY(22px) scale(0.96);
-      transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
-    }
-
-    .gallery-section.visible .gallery-flower-top,
-    .gallery-section.visible .gallery-flower-bottom {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-      position: relative;
-      z-index: 2;
-    }
-
-    .gallery-photo {
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
-      background: #d8d8d8;
-    }
-
-    .gallery-photo img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .gallery-quote {
-      position: relative;
-      z-index: 2;
-      margin-top: 24px;
-      text-align: center;
-      font-size: clamp(18px, 2.3vw, 34px);
-      line-height: 1.4;
-      font-weight: 500;
-      color: #111;
-      letter-spacing: 0.06em;
-      padding: 0 10px 10px;
-    }
-
-    /* ===== КАРТОЧКА ЦВЕТОВОЙ ГАММЫ ===== */
-    .palette-section {
-      background: var(--bg-main);
-      padding: 18px 16px 10px;
-    }
-
-    .palette-card {
-      max-width: 980px;
-      margin: 0 auto;
-      background: var(--bg-blue);
-      border-radius: var(--radius-xl);
-      padding: 38px 18px 34px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .palette-title {
-      margin: 0 0 12px;
-      font-size: clamp(34px, 5.2vw, 68px);
-      line-height: 1.08;
-    }
-
-    .palette-text {
-      margin: 0;
-      font-size: clamp(28px, 4.6vw, 56px);
-      line-height: 1.35;
-    }
-
-    .palette-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
-
-    .dot {
-      width: clamp(64px, 9vw, 112px);
-      height: clamp(64px, 9vw, 112px);
-      border-radius: 999px;
-      border: 5px solid rgba(255,255,255,0.92);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .palette-section.visible .dot {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .palette-section.visible .dot:nth-child(1) { transition-delay: 0.15s; }
-    .palette-section.visible .dot:nth-child(2) { transition-delay: 0.28s; }
-    .palette-section.visible .dot:nth-child(3) { transition-delay: 0.41s; }
-    .palette-section.visible .dot:nth-child(4) { transition-delay: 0.54s; }
-    .palette-section.visible .dot:nth-child(5) { transition-delay: 0.67s; }
 
     /* ===== АНКЕТА ===== */
     .form-wrap {
-      position: relative;
       background: var(--bg-blue);
-      padding: 54px 18px 56px;
-      overflow: hidden;
-    }
-
-    .form-flower {
-      position: absolute;
-      left: -22px;
-      top: -6px;
-      width: min(230px, 28vw);
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(24px) scale(0.96);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .form-wrap.visible .form-flower {
-      opacity: 1;
-      transform: translateY(0) scale(1);
+      padding: 56px 18px 60px;
     }
 
     .form-section {
-      position: relative;
-      z-index: 3;
       max-width: 860px;
       margin: 0 auto;
       text-align: center;
@@ -568,7 +472,7 @@
       cursor: pointer;
     }
 
-    /* ===== УВЕДОМЛЕНИЕ ===== */
+    /* ===== POPUP ===== */
     .music-note,
     .thanks-popup {
       position: fixed;
@@ -628,8 +532,45 @@
         font-size: clamp(32px, 7.8vw, 54px);
       }
 
+      .names-block {
+        padding: 6px 16px 54px;
+      }
+
+      .names-text {
+        font-size: clamp(34px, 8.8vw, 64px);
+      }
+
+      .names-date {
+        margin-top: 18px;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+      }
+
+      .gallery-section {
+        padding: 28px 0 22px;
+      }
+
+      .gallery-bg {
+        padding: 18px 14px 18px;
+        border-radius: 26px;
+      }
+
+      .gallery-grid {
+        gap: 12px;
+      }
+
+      .gallery-photo {
+        border-radius: 18px;
+      }
+
+      .gallery-quote {
+        margin-top: 16px;
+        font-size: 15px;
+        letter-spacing: 0.03em;
+      }
+
       .timing-wrap {
-        padding: 14px 10px 10px;
+        padding: 28px 10px 28px;
       }
 
       .timing-card {
@@ -650,7 +591,6 @@
       .timing-title {
         max-width: 96%;
         font-size: clamp(24px, 6.2vw, 36px);
-        line-height: 1.08;
       }
 
       .countdown {
@@ -662,7 +602,7 @@
       }
 
       .count-num {
-        font-size: clamp(36px, 9vw, 56px);
+        font-size: clamp(38px, 9.4vw, 60px);
         margin-bottom: 8px;
       }
 
@@ -670,59 +610,8 @@
         font-size: 15px;
       }
 
-      .gallery-bg {
-        padding: 38px 14px 16px;
-        border-radius: 26px;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-
-      .gallery-photo {
-        border-radius: 18px;
-      }
-
-      .gallery-flower-top {
-        width: 160px;
-        left: -18px;
-        top: -44px;
-      }
-
-      .gallery-flower-bottom {
-        width: 160px;
-        right: -14px;
-        bottom: 32px;
-      }
-
-      .gallery-quote {
-        margin-top: 16px;
-        font-size: 14px;
-        letter-spacing: 0.06em;
-      }
-
-      .palette-card {
-        border-radius: 26px;
-        padding: 28px 12px 26px;
-      }
-
-      .palette-title {
-        font-size: clamp(28px, 7vw, 50px);
-      }
-
-      .palette-text {
-        font-size: clamp(22px, 6vw, 36px);
-      }
-
       .form-wrap {
         padding: 42px 16px 54px;
-      }
-
-      .form-flower {
-        width: 150px;
-        left: -14px;
-        top: -10px;
       }
 
       .form-title,
@@ -755,7 +644,6 @@
     <source src="Music%20.m4a" type="audio/mp4" />
   </audio>
 
-  <!-- Заставка оставлена как была -->
   <section class="intro" id="intro">
     <div class="intro-inner">
       <div class="intro-monogram">D<span class="divider">|</span>V</div>
@@ -772,6 +660,12 @@
       <img src="Foto1.PNG" alt="Главный экран" />
     </section>
 
+    <!-- Denis & Viktoriia -->
+    <section class="names-block reveal-up">
+      <div class="names-text">Denis&amp;Viktoriia</div>
+      <div class="names-date">mai 16.05, 2026</div>
+    </section>
+
     <!-- 2 -->
     <section class="section-image reveal-up">
       <img src="Foto2.PNG" alt="Второй блок" />
@@ -780,6 +674,37 @@
     <!-- 3 -->
     <section class="section-image reveal-up">
       <img src="Foto3.jpg" alt="Третий блок" />
+    </section>
+
+    <!-- 4 — сдвиг справа -->
+    <section class="section-image reveal-right">
+      <img src="Foto4.jpg" alt="Четвёртый блок" />
+    </section>
+
+    <!-- Галерея -->
+    <section class="gallery-section reveal-left">
+      <div class="gallery-bg">
+        <div class="gallery-grid">
+          <div class="gallery-photo reveal-left delay-1">
+            <img src="Fotogalerie%20.JPG" alt="Фото галереи слева" />
+          </div>
+
+          <div class="gallery-photo reveal-right delay-2">
+            <img src="Fotogalerie1.JPG" alt="Фото галереи справа" />
+          </div>
+        </div>
+
+        <div class="gallery-quote reveal-up delay-3">
+          «так что они уже не двое, но одна плоть. Итак, что Бог сочетал,
+          того человек да не разлучает.»<br>
+          От Матфея 19:6
+        </div>
+      </div>
+    </section>
+
+    <!-- Foto6 -->
+    <section class="section-image reveal-left">
+      <img src="Foto6.jpg" alt="Фото номер шесть" />
     </section>
 
     <!-- Таймер -->
@@ -812,57 +737,8 @@
       </div>
     </section>
 
-    <!-- Foto6 после таймера -->
-    <section class="section-image reveal-up">
-      <img src="Foto6.jpg" alt="Фото после таймера" />
-    </section>
-
-    <!-- Галерея с 2 фото -->
-    <section class="gallery-section reveal-up" id="gallerySection">
-      <div class="gallery-bg">
-        <img class="gallery-flower-top" src="Flowers%201.PNG" alt="" />
-        <img class="gallery-flower-bottom" src="Flowers%202.PNG" alt="" />
-
-        <div class="gallery-grid">
-          <div class="gallery-photo reveal-left delay-1">
-            <img src="Fotogalerie%20.JPG" alt="Фото галереи слева" />
-          </div>
-
-          <div class="gallery-photo reveal-right delay-2">
-            <img src="Fotogalerie1.JPG" alt="Фото галереи справа" />
-          </div>
-        </div>
-
-        <div class="gallery-quote reveal-up delay-3">
-          «так что они уже не двое, но одна плоть. Итак, что Бог сочетал,
-          того человек да не разлучает.»<br>
-          От Матфея 19:6
-        </div>
-      </div>
-    </section>
-
-    <!-- Цветовая гамма -->
-    <section class="palette-section reveal-up" id="paletteSection">
-      <div class="palette-card">
-        <h2 class="palette-title reveal-up delay-1">ДОРОГИЕ ГОСТИ!</h2>
-        <p class="palette-text reveal-up delay-2">
-          Цветовая гамма свадьбы —<br>пастельные тона.
-        </p>
-
-        <div class="palette-dots">
-          <div class="dot" style="background:#A7B48F;"></div>
-          <div class="dot" style="background:#BEC9AF;"></div>
-          <div class="dot" style="background:#F0C2C9;"></div>
-          <div class="dot" style="background:#EFD8D8;"></div>
-          <div class="dot" style="background:#E9E0CF;"></div>
-        </div>
-      </div>
-    </section>
-
     <!-- Анкета -->
-    <section class="form-wrap reveal-up" id="formWrap">
-      <img class="form-flower" src="Flowers%203.PNG" alt="" />
-
+    <section class="form-wrap reveal-up">
       <div class="form-section">
         <h2 class="form-title reveal-up delay-1">Анкета Гостя !</h2>
 
@@ -884,14 +760,14 @@
 
             <input class="field reveal-up delay-3" type="number" min="1" name="count" placeholder="Количество" />
 
-            <button class="submit-btn reveal-up delay-4" type="submit">Отправить</button>
+            <button class="submit-btn reveal-up delay-3" type="submit">Отправить</button>
           </form>
         </div>
       </div>
 
       <div class="group-section">
-        <h2 class="group-title reveal-up delay-3">Общая группа</h2>
-        <a class="group-link reveal-up delay-4" href="https://t.me/+E35sFjZOb3YxNGYy" target="_blank">
+        <h2 class="group-title reveal-up delay-2">Общая группа</h2>
+        <a class="group-link reveal-up delay-3" href="https://t.me/+E35sFjZOb3YxNGYy" target="_blank">
           Перейти в Telegram
         </a>
       </div>
@@ -965,7 +841,6 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Анимации при скролле
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -974,13 +849,10 @@
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll(
-      ".reveal-up, .reveal-left, .reveal-right, .reveal-fade, .gallery-section, .palette-section, .form-wrap"
-    ).forEach((el) => observer.observe(el));
+    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right, .reveal-fade")
+      .forEach((el) => observer.observe(el));
 
-    // Временная отправка формы с красивым окном
     const form = document.getElementById("weddingForm");
-
     form.addEventListener("submit", function() {
       thanksPopup.classList.add("show");
       setTimeout(() => {
