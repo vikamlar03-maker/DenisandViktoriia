@@ -147,25 +147,30 @@
       }
     }
 
-    /* ===== ОБЩИЕ АНИМАЦИИ ===== */
+    /* ===== АНИМАЦИИ ===== */
     .reveal-up,
     .reveal-left,
     .reveal-right,
-    .reveal-fade {
+    .reveal-fade,
+    .stagger {
       opacity: 0;
-      transition: opacity 0.9s ease, transform 0.9s ease;
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
       will-change: transform, opacity;
     }
 
     .reveal-up { transform: translateY(34px); }
-    .reveal-left { transform: translateX(-42px); }
-    .reveal-right { transform: translateX(42px); }
+    .reveal-left { transform: translateX(-46px); }
+    .reveal-right { transform: translateX(46px); }
     .reveal-fade { transform: translateY(14px); }
+    .stagger { transform: translateY(20px); }
 
     .reveal-up.visible,
     .reveal-left.visible,
     .reveal-right.visible,
-    .reveal-fade.visible {
+    .reveal-fade.visible,
+    .stagger.visible {
       opacity: 1;
       transform: translate(0, 0);
     }
@@ -173,8 +178,9 @@
     .delay-1 { transition-delay: 0.12s; }
     .delay-2 { transition-delay: 0.24s; }
     .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.48s; }
 
-    /* ===== БАЗОВЫЕ СЕКЦИИ ===== */
+    /* ===== ОБЩИЕ БЛОКИ ===== */
     .section-image {
       width: 100%;
       background: var(--bg-main);
@@ -186,11 +192,14 @@
       object-fit: cover;
     }
 
-    /* ===== ИМЕНА ПОД ПЕРВЫМ ФОТО ===== */
+    .spacer-xl { height: 42px; }
+    .spacer-lg { height: 28px; }
+
+    /* ===== ИМЯ И ДАТА ===== */
     .names-block {
       background: #EBEBEB;
       text-align: center;
-      padding: 10px 20px 72px;
+      padding: 10px 20px 78px;
     }
 
     .names-text {
@@ -210,10 +219,22 @@
       color: #111111;
     }
 
-    /* ===== БЛОК С 2 ФОТО ===== */
+    /* ===== МЫ ЖЕНИМСЯ / МЕСТО ПРОВЕДЕНИЯ ===== */
+    .blue-image-block {
+      width: 100%;
+      background: var(--bg-main);
+      padding: 24px 0 34px;
+    }
+
+    .blue-image-block img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* ===== ГАЛЕРЕЯ ===== */
     .gallery-section {
       background: var(--bg-main);
-      padding: 34px 0 28px;
+      padding: 40px 0 40px;
     }
 
     .gallery-bg {
@@ -222,9 +243,7 @@
       margin: 0 auto;
       background: var(--bg-blue);
       border-radius: var(--radius-xl);
-      padding: 28px 26px 24px;
-      position: relative;
-      overflow: hidden;
+      padding: 30px 26px 26px;
       box-shadow: var(--shadow);
     }
 
@@ -249,19 +268,20 @@
     }
 
     .gallery-quote {
-      margin-top: 24px;
+      margin-top: 28px;
       text-align: center;
       font-size: clamp(18px, 2.2vw, 34px);
       line-height: 1.42;
-      color: #111;
+      color: #ffffff;
       letter-spacing: 0.03em;
-      padding: 0 8px;
+      padding: 0 12px;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.12);
     }
 
     /* ===== ТАЙМЕР ===== */
     .timing-wrap {
       background: var(--bg-main);
-      padding: 34px 12px 34px;
+      padding: 40px 12px 44px;
     }
 
     .timing-card {
@@ -366,7 +386,7 @@
     /* ===== АНКЕТА ===== */
     .form-wrap {
       background: var(--bg-blue);
-      padding: 56px 18px 60px;
+      padding: 60px 18px 64px;
     }
 
     .form-section {
@@ -377,7 +397,7 @@
 
     .form-title,
     .group-title {
-      margin: 0 0 28px;
+      margin: 0 0 30px;
       font-size: clamp(38px, 6vw, 76px);
       font-weight: 400;
       color: #111;
@@ -458,7 +478,7 @@
 
     .group-section {
       max-width: 860px;
-      margin: 46px auto 0;
+      margin: 52px auto 0;
       text-align: center;
     }
 
@@ -533,7 +553,7 @@
       }
 
       .names-block {
-        padding: 6px 16px 54px;
+        padding: 6px 16px 60px;
       }
 
       .names-text {
@@ -546,12 +566,16 @@
         letter-spacing: 0.12em;
       }
 
+      .blue-image-block {
+        padding: 20px 0 28px;
+      }
+
       .gallery-section {
-        padding: 28px 0 22px;
+        padding: 34px 0 34px;
       }
 
       .gallery-bg {
-        padding: 18px 14px 18px;
+        padding: 18px 14px 20px;
         border-radius: 26px;
       }
 
@@ -564,13 +588,13 @@
       }
 
       .gallery-quote {
-        margin-top: 16px;
+        margin-top: 18px;
         font-size: 15px;
         letter-spacing: 0.03em;
       }
 
       .timing-wrap {
-        padding: 28px 10px 28px;
+        padding: 34px 10px 38px;
       }
 
       .timing-card {
@@ -611,7 +635,7 @@
       }
 
       .form-wrap {
-        padding: 42px 16px 54px;
+        padding: 46px 16px 58px;
       }
 
       .form-title,
@@ -660,10 +684,10 @@
       <img src="Foto1.PNG" alt="Главный экран" />
     </section>
 
-    <!-- Denis & Viktoriia -->
-    <section class="names-block reveal-up">
-      <div class="names-text">Denis&amp;Viktoriia</div>
-      <div class="names-date">mai 16.05, 2026</div>
+    <!-- Denis & Viktoriia между фото и датой -->
+    <section class="names-block">
+      <div class="names-text reveal-left">Denis&amp;Viktoriia</div>
+      <div class="names-date reveal-up delay-1">mai 16.05, 2026</div>
     </section>
 
     <!-- 2 -->
@@ -676,14 +700,24 @@
       <img src="Foto3.jpg" alt="Третий блок" />
     </section>
 
-    <!-- 4 — сдвиг справа -->
+    <!-- 4 -->
     <section class="section-image reveal-right">
       <img src="Foto4.jpg" alt="Четвёртый блок" />
     </section>
 
+    <!-- Мы женимся -->
+    <section class="blue-image-block reveal-up">
+      <img src="Foto5.PNG" alt="Мы женимся" />
+    </section>
+
+    <!-- Место проведения -->
+    <section class="blue-image-block reveal-up">
+      <img src="Foto2.PNG" alt="Место проведения" />
+    </section>
+
     <!-- Галерея -->
-    <section class="gallery-section reveal-left">
-      <div class="gallery-bg">
+    <section class="gallery-section">
+      <div class="gallery-bg reveal-up">
         <div class="gallery-grid">
           <div class="gallery-photo reveal-left delay-1">
             <img src="Fotogalerie%20.JPG" alt="Фото галереи слева" />
@@ -695,8 +729,8 @@
         </div>
 
         <div class="gallery-quote reveal-up delay-3">
-          «так что они уже не двое, но одна плоть. Итак, что Бог сочетал,
-          того человек да не разлучает.»<br>
+          «так что они уже не двое, но одна плоть. Итак,
+          что Бог сочетал, того человек да не разлучает.»<br>
           От Матфея 19:6
         </div>
       </div>
@@ -744,9 +778,9 @@
 
         <div class="form-card reveal-up delay-2">
           <form id="weddingForm" onsubmit="return false;">
-            <input class="field reveal-up delay-1" type="text" name="name" placeholder="Имя" required />
+            <input class="field stagger delay-1" type="text" name="name" placeholder="Имя" required />
 
-            <div class="radio-row reveal-up delay-2">
+            <div class="radio-row stagger delay-2">
               <label class="radio-label">
                 <input type="radio" name="attend" value="Да" required />
                 <span>Да</span>
@@ -758,9 +792,9 @@
               </label>
             </div>
 
-            <input class="field reveal-up delay-3" type="number" min="1" name="count" placeholder="Количество" />
+            <input class="field stagger delay-3" type="number" min="1" name="count" placeholder="Количество" />
 
-            <button class="submit-btn reveal-up delay-3" type="submit">Отправить</button>
+            <button class="submit-btn stagger delay-4" type="submit">Отправить</button>
           </form>
         </div>
       </div>
@@ -780,6 +814,7 @@
     const bgMusic = document.getElementById("bgMusic");
     const musicNote = document.getElementById("musicNote");
     const thanksPopup = document.getElementById("thanksPopup");
+    const form = document.getElementById("weddingForm");
 
     let opened = false;
 
@@ -849,15 +884,44 @@
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right, .reveal-fade")
+    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right, .reveal-fade, .stagger")
       .forEach((el) => observer.observe(el));
 
-    const form = document.getElementById("weddingForm");
-    form.addEventListener("submit", function() {
+    form.addEventListener("submit", function () {
+      const name = form.elements["name"].value;
+      const attend = form.querySelector('input[name="attend"]:checked')?.value || "";
+      const count = form.elements["count"].value || "1";
+
+      const TOKEN = "ВСТАВЬ_СЮДА_ТОКЕН";
+      const CHAT_ID = "ВСТАВЬ_СЮДА_CHAT_ID";
+
+      const text = `💍 Новая регистрация!
+
+👤 Имя: ${name}
+✅ Придёт: ${attend}
+👥 Количество: ${count}`;
+
+      if (
+        TOKEN !== "ВСТАВЬ_СЮДА_ТОКЕН" &&
+        CHAT_ID !== "ВСТАВЬ_СЮДА_CHAT_ID"
+      ) {
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text
+          })
+        }).catch(() => {});
+      }
+
       thanksPopup.classList.add("show");
       setTimeout(() => {
         thanksPopup.classList.remove("show");
       }, 2600);
+
       form.reset();
     });
   </script>
